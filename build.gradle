@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.0'
+}
+
+group = 'ru.highloadJava.lab4'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-websocket:3.3.0'
+    implementation 'org.springframework.kafka:spring-kafka:3.3.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    implementation 'org.projectlombok:lombok:1.18.36'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.3.0'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.3.0'
+    testImplementation 'org.springframework.kafka:spring-kafka-test:3.3.0'
+
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << "-Xlint:deprecation"
+}
